@@ -1,0 +1,24 @@
+
+CHANGES
+----------------------------------------------------------------------
+SIGN IN SHEET
+
+by Kyle Goslin & Daniel McSweeney
+
+Copyright 2013-2014 - Institute of Technology Blanchardstown.
+
+----------------------------------------------------------------------
+
+
+
+Version 1.4
+Date: 1st April 2014
+- New screenshots updated on Moodle.org
+- Updated descriptions
+- Tested with Moodle 2.6
+- Remember choice of first name and last name updated.
+- Remember choice of filter applied updated.
+
+
+
+

@@ -1,5 +1,26 @@
 <?php
-
+// This file is part of Moodle - http://moodle.org/
+//
+// Signinsheet is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Signinsheet is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ 
+/**
+ *
+ * @package    block_signinsheet
+ * @copyright  2013 Kyle Goslin, Daniel McSweeney
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 require('../../config.php');
 global $CFG, $DB;
@@ -24,9 +45,6 @@ $PAGE->set_heading(get_string('pluginname', 'block_signinsheet'));
 		$mform->addElement('filepicker', 'userfile', get_string('file'), null,
                    array('maxbytes' => $maxbytes, 'accepted_types' => '*'));
 		
-	//$mform->addElement('file', 'groupdocs_file', get_string('groupdocs_file', 'block_groupdocs'));
-     //   $mform->addElement('filemanager', 'attachment_filemanager', get_string('attachment', 'glossary'), null, $attachmentoptions);
-      //  $mform->addHelpButton('attachment_filemanager', 'attachment', 'glossary');
 	
      $this->add_action_buttons();
   //$this->set_data($currententry);
@@ -44,43 +62,7 @@ $success = $mform->save_file('userfile', '/signinsheet', true);
 $storedfile = $mform->save_stored_file('userfile', 1, 'signinsheet', 'content', 0, '/', null, true);
 // ---------------------------------------------------------------------------
 
-/*
-  $context = context_system::instance();
-  $timenow = time();
 
-
-
-
-$maxfiles = 99;                // TODO: add some setting
-$maxbytes = $course->maxbytes; // TODO: add some setting
-
-$definitionoptions = array('trusttext'=>true, 'subdirs'=>false, 'maxfiles'=>$maxfiles, 'maxbytes'=>$maxbytes, 'context'=>$context);
-$attachmentoptions = array('subdirs'=>false, 'maxfiles'=>$maxfiles, 'maxbytes'=>$maxbytes);
-   $entry = new stdClass();
-	
-    $entry->concept          = trim($entry->concept);
-    $entry->definition       = '';          // updated later
-    $entry->definitionformat = FORMAT_HTML; // updated later
-    $entry->definitiontrust  = 0;           // updated later
-    $entry->timemodified     = $timenow;
-    $entry->approved         = 0;
-    $entry->usedynalink      = isset($entry->usedynalink) ?   $entry->usedynalink : 0;
-    $entry->casesensitive    = isset($entry->casesensitive) ? $entry->casesensitive : 0;
-    $entry->fullmatch        = isset($entry->fullmatch) ?     $entry->fullmatch : 0;
-
-    if ($glossary->defaultapproval or has_capability('mod/glossary:approve', $context)) {
-        $entry->approved = 1;
-    }
-
-    if (empty($entry->id)) {
-        //new entry
-        $entry->id = $DB->insert_record('glossary_entries', $entry);
-        }
-
-
-   $entry = file_postupdate_standard_filemanager($fromform, 'attachment', $attachmentoptions, $context, 'mod_glossary', 'attachment', 0);
-
-*/
 // ----------------------------------------------------------------------------
 
 } else {

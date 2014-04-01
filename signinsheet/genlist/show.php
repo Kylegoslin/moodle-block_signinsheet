@@ -1,16 +1,34 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Signinsheet is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Signinsheet is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ 
+/**
+ *
+ * @package    block_signinsheet
+ * @copyright  2013 Kyle Goslin, Daniel McSweeney
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 
 /* ----------------------------------------------------------------------
- * 
- * 
- * 
- * 
  * show.php
  * 
  * Description:
  * This is the main display page used for calling each different reresentation
- * 
+ * of signinsheets
  * ----------------------------------------------------------------------
  */
 require_once("../../../config.php");
@@ -25,7 +43,7 @@ $gid = optional_param('gid', '', PARAM_INT);
 
 /** Navigation Bar **/
 $PAGE->navbar->ignore_active();
-$renderType = '';
+$rendertype = '';
 
 $selectgroupsec = optional_param('selectgroupsec', '', PARAM_TEXT);  
 
@@ -34,28 +52,28 @@ $selectgroupsec = optional_param('selectgroupsec', '', PARAM_TEXT);
 if(isset($selectgroupsec)){
 	
 	if($selectgroupsec == 'all'){
-		$renderType = 'all';
+		$rendertype = 'all';
 	}
 	else if($selectgroupsec == 'group'){
-		$renderType == 'group';
+		$rendertype == 'group';
 	} 
 	
 	if(is_numeric($selectgroupsec)) {
-		$renderType = 'group';
+		$rendertype = 'group';
 	}
 	
 		
 } else {
-		$renderType = 'all';
+		$rendertype = 'all';
 }
 
-if($renderType == 'all' || $renderType == ''){
+if($rendertype == 'all' || $rendertype == ''){
 		$courseName = $DB->get_record('course', array('id'=>$cid), 'shortname', $strictness=IGNORE_MISSING); 
 		$PAGE->navbar->add($courseName->shortname, new moodle_url($CFG->wwwroot . '/course/view.php?id=' . $cid));
 		$PAGE->navbar->add(get_string('showall', 'block_signinsheet'));
 	
 }
-else if($renderType == 'group'){
+else if($rendertype == 'group'){
 		$courseName = $DB->get_record('course', array('id'=>$cid), 'shortname', $strictness=IGNORE_MISSING); 
 		$PAGE->navbar->add($courseName->shortname, new moodle_url($CFG->wwwroot . '/course/view.php?id=' . $cid));
 		$PAGE->navbar->add(get_string('showbygroup', 'block_signinsheet'));
@@ -72,9 +90,9 @@ echo buildMenu($cid);
 
 
 
-$logoEnabled = get_config('block_signinsheet', 'customlogoenabled');
+$logoenabled = get_config('block_signinsheet', 'customlogoenabled');
 
-if($logoEnabled){
+if($logoenabled){
 	printHeaderLogo();
 }
 
@@ -121,40 +139,44 @@ class signinsheet_form extends moodleform {
  * */
 function buildMenu($cid){
 	
-	global $DB, $CFG, $renderType;
+	global $DB, $CFG, $rendertype;
 	
-	$orderBy = '';
-	$orderBy = optional_param('orderby', '', PARAM_TEXT);
+	$orderby = '';
+	$orderby = optional_param('orderby', 'firstname', PARAM_TEXT);
 	
 	
-	$outputHTML = '<div style="float:right"><form action="'.$CFG->wwwroot. '/blocks/signinsheet/genlist/show.php?cid='.$cid.'" method="post">
-				 Order By: <select name="orderby" id="orderby">
+	$outputhtml = '<div style="float:right"><form action="'.$CFG->wwwroot. '/blocks/signinsheet/genlist/show.php?cid='.$cid.'" method="post">
+				 '.get_string('orderby', 'block_signinsheet').': <select name="orderby" id="orderby">
 								<option value="firstname">' .get_string('firstname', 'block_signinsheet').'</option>
 								<option value="lastname">'.get_string('lastname', 'block_signinsheet').'</option>
 						  </select>
 						  
-				 Filter: <select id="selectgroupsec" name="selectgroupsec">
+				 '.get_string('filter', 'block_signinsheet').': <select id="selectgroupsec" name="selectgroupsec">
 				 	<option value="all">'.get_string('showall', 'block_signinsheet').'</option>
 				 '. buildGroups($cid).'	
 				 </select>
 				 <input type="submit" value="'.get_string('update', 'block_signinsheet').'"></input>
 				</form>
-				
+
+				<script>document.getElementById(\'orderby\').value="'.$orderby.'";</script>
 				<span style="float:right">
 				
 				<form action="../print/page.php" target="_blank">
    				<input type="hidden" name="cid" value="'.$cid.'">
-				<input type="hidden" name="rendertype" value="'.$renderType.'">
+				<input type="hidden" name="rendertype" value="'.$rendertype.'">
 				
 				';
 				
 				// If a group was selected
-				$selectgroupsec = optional_param('selectgroupsec', '', PARAM_TEXT); 
+				$selectgroupsec = optional_param('selectgroupsec', 'all', PARAM_TEXT); 
+	$outputhtml .= '
+					<script>document.getElementById(\'selectgroupsec\').value="'.$selectgroupsec.'";</script>
+				';
 				if(isset($selectgroupsec)){
- 					$outputHTML .= '<input type="hidden" name="selectgroupsec" value="'.$selectgroupsec.'">';
+ 					$outputhtml .= '<input type="hidden" name="selectgroupsec" value="'.$selectgroupsec.'">';
 				}
-				$outputHTML .= '
-				<input type="hidden" name="orderby" value="'.$orderBy.'">
+				$outputhtml .= '
+				<input type="hidden" name="orderby" value="'.$orderby.'">
 					
 				
    				<input type="submit" value="'.get_string('printbutton', 'block_signinsheet').'">
@@ -168,7 +190,7 @@ function buildMenu($cid){
 				</div>
 				';
 	
-	return $outputHTML;
+	return $outputhtml;
 	
 }
 /*
@@ -180,16 +202,16 @@ function buildGroups($cid){
 	
 	global $DB;
 	
-	$buildHTML = '';
+	$buildhtml = '';
 	$groups = $DB->get_records('groups',array('courseid'=>$cid));
 
 	foreach($groups as $group){
 		$groupId = $group->id;
 		
-		$buildHTML.= '<option value="'.$groupId.'">'. $group->name.'</option>';
+		$buildhtml.= '<option value="'.$groupId.'">'. $group->name.'</option>';
 	}
 	
-	return $buildHTML;
+	return $buildhtml;
 	
 }
 
@@ -200,21 +222,21 @@ echo $OUTPUT->footer();
 
  $selectgroupsec = optional_param('selectgroupsec', '', PARAM_TEXT); 
 	if(isset($selectgroupsec)){
- 		$selectedItem = $selectgroupsec;
+ 		$selecteditem = $selectgroupsec;
 		echo '<script>
-				document.getElementById("selectgroupsec").value = '.$selectedItem.'
+				document.getElementById("selectgroupsec").value = '.$selecteditem.'
 			  </script>';
 	 }
 
- $orderBy = optional_param('orderby', '', PARAM_TEXT);
-	if(isset($orderBy)){
-		$orderItem = $orderBy;
+ $orderby = optional_param('orderby', '', PARAM_TEXT);
+	if(isset($orderby)){
+		$orderitem = $orderby;
 		
 		echo '<script>
-				document.getElementById("orderby").value = "'.$orderItem.'"
+				document.getElementById("orderby").value = "'.$orderitem.'"
 			  </script>';
 			  
-			  if($orderItem == ""){
+			  if($orderitem == ""){
 			  	echo '<script>
 				document.getElementById("orderby").value = "firstname";
 			  </script>';

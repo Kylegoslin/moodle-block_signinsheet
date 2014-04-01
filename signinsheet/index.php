@@ -1,20 +1,29 @@
-<?php 
-// ===============
+<?php
+// This file is part of Moodle - http://moodle.org/
 //
-//  FILE MANAGER EXAMPLE
+// Signinsheet is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 //
-// ===============
-// @Author: Andy Normore
-// @Author: Davo Smith  
-// https://github.com/AndyNormore/MoodleFileManager
-
-// The point of this file is to demonstrate how to manage files within Moodle 2.3
-// Why? Because file management is incredibly hard for some reason.
-// This file is built to run as STANDALONE, no external files or strings. Just 100% easy to understand! (Noob friendly)
-// Thanks to Davo Smith for helping to create this project. 
-
-
-
+// Signinsheet is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ 
+/**
+ *
+ * @package    block_signinsheet
+ * @copyright  2013 Kyle Goslin, Daniel McSweeney
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * index.php
+ * This file is used for making records of the images that have been uploaded.
+ */
 
 
 // --------------
@@ -129,9 +138,9 @@ if ($files = $fs->get_area_files($context->id, 'block_signinsheet', 'attachment'
 
 global $DB, $CFG;
 
-$recordExists = $DB->get_record('block_signinsheet', array('id'=>1));
+$recordexists = $DB->get_record('block_signinsheet', array('id'=>1));
     
-    if($recordExists){
+    if($recordexists){
         
             $record = new stdClass();
             $record->id = 1;
