@@ -38,10 +38,6 @@ function init() {
 
     $this->title   = get_string('pluginname', 'block_signinsheet');
     $plugin = new stdClass();
-    $plugin->version   = 2014051015;      // The current module version (Date: YYYYMMDDXX)
-    $plugin->requires  = 2011070110.00;      // Requires this Moodle version
-
-
   }
 
 function get_content() {
