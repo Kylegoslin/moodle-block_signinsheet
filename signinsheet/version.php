@@ -18,15 +18,15 @@
 /**
  *
  * @package    block_signinsheet
- * @copyright  2013 Kyle Goslin, Daniel McSweeney
+ * @copyright  2015 Kyle Goslin, Daniel McSweeney
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$plugin->version = 2014040114;      // The current module version (Date: YYYYMMDDXX)
+$plugin->version = 2015300501;      // The current module version (Date: YYYYMMDDXX)
 $plugin->requires = 2011070110.00;      // Requires this Moodle version
 
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.4';
+$plugin->release = '1.5';
 ?>
 
 

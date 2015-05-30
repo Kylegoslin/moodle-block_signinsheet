@@ -54,13 +54,14 @@ function printHeaderLogo(){
  *
  * 
  * */ 
-function renderGroup(){
+function renderGroup($extra){
 		
 	global $DB, $cid, $CFG;
 	$outputhtml = '';
 	
 	$cid = required_param('cid', PARAM_INT);
 	$selectedgroupid = optional_param('selectgroupsec', '', PARAM_INT);
+	$extra = optional_param('extra', '', PARAM_INT);
 	
 	$appendorder = '';
 	$orderby = optional_param('orderby', '', PARAM_TEXT);
@@ -96,23 +97,21 @@ function renderGroup(){
 	
 	$result = $DB->get_records_sql($query,array($selectedgroupid));
 	$date = date('d-m-y');
-	
-	
 	$courseName = $DB->get_record('course', array('id'=>$cid), 'fullname', $strictness=IGNORE_MISSING); 
-
+	$courseSName = $DB->get_record('course', array('id'=>$cid), 'shortname', $strictness=IGNORE_MISSING); 
+	$outputhtml = '';
+	
 	$outputhtml .= '<span style="font-size:25px"> <b>'. get_string('signaturesheet', 'block_signinsheet').'</span><br>';
-
-	$outputhtml .= '<span style="font-size:20px"> <b>'. get_string('course', 'block_signinsheet').':</b> ' .$courseName->fullname.'</span><br><p></p>';
+	
+	$outputhtml .= '<span style="font-size:20px"> <b>'. get_string('course', 'block_signinsheet').': </b>' .$courseSName->shortname.' - ' .$courseName->fullname.'</span><br><p></p>';
+	
+	$reportdate = date('l jS \of F Y');
+	$outputhtml .= '<span style="font-size:18px"> <b>'. get_string('date', 'block_signinsheet').':</b> '.$reportdate.'</span><p></p>';
 	
 	
-	$outputhtml .= '<span style="font-size:18px"> <b>'. get_string('date', 'block_signinsheet').':</b> _______________________</span><p></p>';
+	$outputhtml .= '<span style="font-size:18px"><br> <b>'. get_string('description', 'block_signinsheet').': __________________________________________________</b> </span><p></p>&nbsp;<p></p>&nbsp;';
 	
-	$outputhtml .= '<span style="font-size:18px"> <b>'. get_string('description', 'block_signinsheet').': __________________________________________________</b> </span><p></p>&nbsp;<p></p>&nbsp;';
-
-	if(isset($groupname)){
-		$outputhtml .= '<span style="font-size:18px">'. $groupname->name . '</span><p></p>';
-	}
-
+	
 	$outputhtml .= '<table style="border-style: solid;" width="600px"  border="1px"><tr>
 					<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="200"><b>Name</b></td>
 				';
@@ -147,16 +146,13 @@ if($addidfield){
 	$totalrows = 0;
 	
 	foreach($result as $face){
-
-
 		$outputhtml .=  printSingleFace($face->userid, $cid);
-	
-		
-		
-		
-		
 	}
 	
+	//do we need to print additional lines
+	for ($x = 1; $x <= $extra; $x++) {
+    	$outputhtml .=  printblank();
+	} 
 
 	
 	$outputhtml .= '</tr></table>';
@@ -172,10 +168,9 @@ if($addidfield){
  * Render the entire class 
  * 
  * */
-function renderAll(){
+function renderAll($extra){
 	
 	global $DB, $cid, $OUTPUT, $CFG;
-	
 	
 	$appendorder = '';
 	$orderby = '';
@@ -210,20 +205,18 @@ function renderAll(){
 
 	$date = date('d-m-y');
 	$courseName = $DB->get_record('course', array('id'=>$cid), 'fullname', $strictness=IGNORE_MISSING); 
+	$courseSName = $DB->get_record('course', array('id'=>$cid), 'shortname', $strictness=IGNORE_MISSING); 
 	$outputhtml = '';
 	
 	$outputhtml .= '<span style="font-size:25px"> <b>'. get_string('signaturesheet', 'block_signinsheet').'</span><br>';
 	
+	$outputhtml .= '<span style="font-size:20px"> <b>'. get_string('course', 'block_signinsheet').': </b>' .$courseSName->shortname.' - ' .$courseName->fullname.'</span><br><p></p>';
 	
-	$outputhtml .= '<span style="font-size:20px"> <b>'. get_string('course', 'block_signinsheet').':</b> ' .$courseName->fullname.'</span><br><p></p>';
-	
-
-
-	
-	$outputhtml .= '<span style="font-size:18px"> <b>'. get_string('date', 'block_signinsheet').':</b> _______________________</span><p></p>';
+	$reportdate = date('l jS \of F Y');
+	$outputhtml .= '<span style="font-size:18px"> <b>'. get_string('date', 'block_signinsheet').':</b> '.$reportdate.'</span><p></p>';
 	
 	
-	$outputhtml .= '<span style="font-size:18px"> <b>'. get_string('description', 'block_signinsheet').': __________________________________________________</b> </span><p></p>&nbsp;<p></p>&nbsp;';
+	$outputhtml .= '<span style="font-size:18px"><br> <b>'. get_string('description', 'block_signinsheet').': __________________________________________________</b> </span><p></p>&nbsp;<p></p>&nbsp;';
 	
 	
 	$outputhtml .= '<table style="border-style: solid;" width="600px"  border="1px"><tr>
@@ -271,6 +264,12 @@ if($addidfield){
 		$outputhtml .=  printSingleFace($face->userid, $cid);
 
 	}
+	
+	
+	//do we need to print additional lines
+	for ($x = 1; $x <= $extra; $x++) {
+    	$outputhtml .=  printblank();
+	} 
 	
 	
 	
@@ -351,5 +350,42 @@ function printSingleFace($uid, $cid){
 		';
 
 return $outputhtml;
+
+}
+
+
+
+
+
+
+function printblank(){
+
+		
+	$outputhtml =  '<tr height="10"><td  style="border-right: thin solid;  border-bottom: thin solid" border="1px" width="200"> &nbsp;</td>';
+
+	$addfieldenabled = get_config('block_signinsheet', 'includecustomfield');
+	
+	// Include additional field data if enabled
+	if($addfieldenabled){
+		$outputhtml .=	'<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150">&nbsp; </td>';
+	} 
+	
+	//Add custom field text if enabled
+	$addtextfield = get_config('block_signinsheet', 'includecustomtextfield');
+	if($addtextfield){
+			$outputhtml .=	'<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150">&nbsp;  </td>';
+	}
+
+	// Id number field enabled
+	$addidfield = get_config('block_signinsheet', 'includeidfield');
+	if($addidfield){
+			$outputhtml .=	'<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"> &nbsp; </td>';
+	}	
+
+
+	$outputhtml .='	<td style=" border-bottom: thin solid"> </td>
+				</tr>';
+
+	return $outputhtml;
 
 }

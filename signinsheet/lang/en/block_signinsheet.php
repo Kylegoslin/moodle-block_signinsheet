@@ -33,6 +33,8 @@ $string['signinsheet:myaddinstance'] = 'Sign in Sheet';
 $string['showall'] = 'Show All';
 $string['showbygroup'] = 'Show Faces By Group';
 $string['update'] = 'Update';
+$string['blankfields'] = 'Blank Fields';
+
 
 $string['date'] = 'Date';
 $string['course'] = 'Course';

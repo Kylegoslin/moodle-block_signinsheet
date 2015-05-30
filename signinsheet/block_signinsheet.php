@@ -18,7 +18,7 @@
 /**
  *
  * @package    block_signinsheet
- * @copyright  2013 Kyle Goslin, Daniel McSweeney
+ * @copyright  2015 Kyle Goslin, Daniel McSweeney
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 *
 *
@@ -32,17 +32,21 @@
 class block_signinsheet extends block_base {
 
 
-function has_config() {return true;}
+	function has_config() {return true;}
 
-function init() {
-
-    $this->title   = get_string('pluginname', 'block_signinsheet');
-    $plugin = new stdClass();
-    $plugin->version   = 2014040114;      // The current module version (Date: YYYYMMDDXX)
-    $plugin->requires  = 2011070110.00;      // Requires this Moodle version
-
-
-  }
+	function init() {
+		$this->title   = get_string('pluginname', 'block_signinsheet');
+    	$plugin = new stdClass();
+ 	}
+  
+  
+  	public function applicable_formats() {
+        return array('course-view' => true);
+    }
+    
+	public function instance_allow_multiple() {
+		return false;
+	}
 
 function get_content() {
 

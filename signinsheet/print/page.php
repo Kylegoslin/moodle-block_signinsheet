@@ -39,24 +39,28 @@ if($logoEnabled){
 }
 
 
+//extra lines to print?
+$extra = optional_param('extra', '', PARAM_TEXT);;
+
 $rendertype = optional_param('rendertype', '', PARAM_TEXT);
 if(isset($rendertype)){
 	
 	if($rendertype == 'all' || $rendertype == ''){
 		
-		echo renderAll();
+		echo renderAll($extra);
 		
 	}
 	else if($rendertype == 'group'){
 	
-		echo renderGroup();
+		echo renderGroup($extra);
 	
 	}
 	
 } else {
 
-	renderGroup();
+	renderGroup($extra);
 }
+
 
 
 ?>

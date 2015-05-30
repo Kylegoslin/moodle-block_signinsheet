@@ -34,6 +34,8 @@
 require_once("../../../config.php");
 global $CFG, $DB;
 require_login();
+//moodleform is defined in formslib.php
+require_once("$CFG->libdir/formslib.php");
 
 require_once('rendersigninsheet.php');
 
@@ -46,7 +48,7 @@ $PAGE->navbar->ignore_active();
 $rendertype = '';
 
 $selectgroupsec = optional_param('selectgroupsec', '', PARAM_TEXT);  
-
+$extra = optional_param('extra', '', PARAM_TEXT);;
 
  
 if(isset($selectgroupsec)){
@@ -103,17 +105,17 @@ if(isset($selectgroupsec)){
 	
 	if($selectgroupsec == 'all' || $selectgroupsec == ''){
 		 
-		echo renderAll();
+		echo renderAll($extra);
 		
 	} else {
 		
-		echo renderGroup();
+		echo renderGroup($extra);
 	
 	}
 	
 } else {
 
-	echo renderAll();
+	echo renderAll($extra);
 }
 
 class signinsheet_form extends moodleform {
@@ -162,14 +164,16 @@ function buildMenu($cid){
 				<span style="float:right">
 				
 				<form action="../print/page.php" target="_blank">
+				'.get_string('blankfields', 'block_signinsheet').': <input type="number" min="0" size="3" name="extra" value="0">	
    				<input type="hidden" name="cid" value="'.$cid.'">
 				<input type="hidden" name="rendertype" value="'.$rendertype.'">
+				
 				
 				';
 				
 				// If a group was selected
 				$selectgroupsec = optional_param('selectgroupsec', 'all', PARAM_TEXT); 
-	$outputhtml .= '
+				$outputhtml .= '
 					<script>document.getElementById(\'selectgroupsec\').value="'.$selectgroupsec.'";</script>
 				';
 				if(isset($selectgroupsec)){
@@ -177,7 +181,8 @@ function buildMenu($cid){
 				}
 				$outputhtml .= '
 				<input type="hidden" name="orderby" value="'.$orderby.'">
-					
+				
+				
 				
    				<input type="submit" value="'.get_string('printbutton', 'block_signinsheet').'">
 				</span>

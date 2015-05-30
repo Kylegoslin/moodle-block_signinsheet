@@ -5,10 +5,15 @@ SIGN IN SHEET
 
 by Kyle Goslin & Daniel McSweeney
 
-Copyright 2013-2014 - Institute of Technology Blanchardstown.
+Copyright 2013-2015 - Institute of Technology Blanchardstown.
 
 ----------------------------------------------------------------------
-
+Version 1.5
+Date: 30th May 2015
+- Added blank fields option for printing
+- tested with 2.8 and 2.9
+- Limited to use on course pages (site would not make sense)
+- Limited to one instance per course
 
 
 Version 1.4
