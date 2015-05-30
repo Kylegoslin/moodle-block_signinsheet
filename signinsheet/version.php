@@ -13,8 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
- 
- 
+
 /**
  *
  * @package    block_signinsheet
@@ -22,11 +21,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$plugin->version = 2015300501;      // The current module version (Date: YYYYMMDDXX)
-$plugin->requires = 2011070110.00;      // Requires this Moodle version
+$plugin->version = 2015300501;      // The current module version (Date: YYYYMMDDXX).
+$plugin->requires = 2011070110.00;      // Requires this Moodle version.
 
 $plugin->maturity = MATURITY_STABLE;
 $plugin->release = '1.5';
-?>
-
-

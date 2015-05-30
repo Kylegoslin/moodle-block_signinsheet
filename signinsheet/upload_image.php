@@ -13,8 +13,8 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
- 
- 
+
+
 /**
  *
  * @package    block_signinsheet
@@ -24,8 +24,8 @@
 
 require('../../config.php');
 global $CFG, $DB;
-$formPath = "$CFG->libdir/formslib.php";
-require_once($formPath);
+$formpath = "$CFG->libdir/formslib.php";
+require_once($formpath);
 
 $PAGE->navbar->ignore_active();
 $PAGE->navbar->add(get_string('settings', 'block_signinsheet'), new moodle_url('../../admin/settings.php?section=blocksettingsigninsheet'));
@@ -37,9 +37,9 @@ $PAGE->set_context(get_system_context());
 $PAGE->set_heading(get_string('pluginname', 'block_signinsheet'));
 
 
- class signinsheet_uploader_form extends moodleform {
- 
- 
+class signinsheet_uploader_form extends moodleform {
+
+
     function definition() {
     	$mform = $this->_form;
 		$mform->addElement('filepicker', 'userfile', get_string('file'), null,

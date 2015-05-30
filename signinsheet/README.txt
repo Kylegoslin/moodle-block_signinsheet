@@ -13,7 +13,8 @@ Version 1.5
 
 Sign In Sheet block allows you to generate attendance lists for your students.
 
-Each of the students which are currently added to a course page will have their name and blank line which allows them to sign their name to indicate that they attended a class. This physical sign in is requirement which is needed in some institutes. 
+A list of students with a space for a signature is generated for printing based on enrolments. 
+
 
 Additional information about the course name and the current date is added to the top of the sheet, allowing for easy tracking of printed lists.
 

@@ -13,70 +13,68 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
- 
- 
+
+
 /**
  *
  * @package    block_signinsheet
  * @copyright  2015 Kyle Goslin, Daniel McSweeney
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
-*
-*
-*  block_signinsheet.php
-*  The block allows for the generation of custom signin sheets for students
-*  based upon the users currently enrolled in the course.
-*
+ *
+ *
+ *  block_signinsheet.php
+ *  The block allows for the generation of custom signin sheets for students
+ *  based upon the users currently enrolled in the course.
+ *
  */
 
 
 class block_signinsheet extends block_base {
 
+    public function has_config() {
+        return true;
+    }
 
-	function has_config() {return true;}
+    public function init() {
+        $this->title   = get_string('pluginname', 'block_signinsheet');
+        $plugin = new stdClass();
+    }
 
-	function init() {
-		$this->title   = get_string('pluginname', 'block_signinsheet');
-    	$plugin = new stdClass();
- 	}
-  
-  
-  	public function applicable_formats() {
+    public function applicable_formats() {
         return array('course-view' => true);
     }
-    
-	public function instance_allow_multiple() {
-		return false;
-	}
 
-function get_content() {
-
-
-
-    if ($this->content !== NULL) {
-      return $this->content;
+    public function instance_allow_multiple() {
+        return false;
     }
 
-    global $CFG;
-    global $COURSE;
-	global $DB;
 
-    $this->content =  new stdClass;
+    public function get_content() {
 
-	$blockhidden = get_config('block_signinsheet', 'hidefromstudents');
+        if ($this->content !== null) {
+              return $this->content;
+        }
 
-	//
-	// If the admin has selected to hide from students
-	//
-	if (!empty($blockhidden)) {
-		if (has_capability('block/signinsheet:viewblock', $this->context)) {
-	   		 $this->content->text = getSignInNav();
-		} else {
-			
-		}
-	} else {
-		$this->content->text = getSignInNav();
-	}
+        global $CFG;
+        global $COURSE;
+        global $DB;
 
+        $this->content = new stdClass;
+
+        $blockhidden = get_config('block_signinsheet', 'hidefromstudents');
+
+        // If the admin has selected to hide from students.
+	    if (!empty($blockhidden)) {
+            if (has_capability('block/signinsheet:viewblock', $this->context)) {
+                $this->content->text = getSignInNav();
+        } 
+        else {
+
+        }
+    } 
+    else {
+        $this->content->text = getSignInNav();
+    }
 
     $this->content->footer = '';
 

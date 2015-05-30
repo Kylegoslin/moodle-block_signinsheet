@@ -23,7 +23,3 @@ Date: 1st April 2014
 - Tested with Moodle 2.6
 - Remember choice of first name and last name updated.
 - Remember choice of filter applied updated.
-
-
-
-
