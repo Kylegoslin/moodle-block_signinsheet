@@ -5,16 +5,15 @@ SIGN IN SHEET BLOCK FOR MOODLE
 
 by Kyle Goslin & Daniel McSweeney
 
-Copyright 2013-2015 - Institute of Technology Blanchardstown.
+Copyright 2013-2014 - Institute of Technology Blanchardstown.
 Web: www.itb.ie
-Version 1.5
+Version 1.4
 
 ----------------------------------------------------------------------
 
 Sign In Sheet block allows you to generate attendance lists for your students.
 
-A list of students with a space for a signature is generated for printing based on enrolments. 
-
+Each of the students which are currently added to a course page will have their name and blank line which allows them to sign their name to indicate that they attended a class. This physical sign in is requirement which is needed in some institutes. 
 
 Additional information about the course name and the current date is added to the top of the sheet, allowing for easy tracking of printed lists.
 
@@ -36,8 +35,3 @@ Site Administration >> Plugins >> Blocks >> Manage Blocks
 You will then see a list of blocks available on the system. Scroll down to
 Sign In Sheet and click "Settings".
 ----------------------------------------------------------------------
-
-
-DISCLAIMER
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

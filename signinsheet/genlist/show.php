@@ -34,9 +34,7 @@
 require_once("../../../config.php");
 global $CFG, $DB;
 require_login();
-//moodleform is defined in formslib.php
 require_once("$CFG->libdir/formslib.php");
-
 require_once('rendersigninsheet.php');
 
 $cid = required_param('cid', PARAM_INT);
@@ -164,16 +162,15 @@ function buildMenu($cid){
 				<span style="float:right">
 				
 				<form action="../print/page.php" target="_blank">
-				'.get_string('blankfields', 'block_signinsheet').': <input type="number" min="0" size="3" name="extra" value="0">	
+				'.get_string('blankfields', 'block_signinsheet').': <input type="number" min="0" size="3" name="extra" value="0">
    				<input type="hidden" name="cid" value="'.$cid.'">
 				<input type="hidden" name="rendertype" value="'.$rendertype.'">
-				
 				
 				';
 				
 				// If a group was selected
 				$selectgroupsec = optional_param('selectgroupsec', 'all', PARAM_TEXT); 
-				$outputhtml .= '
+	$outputhtml .= '
 					<script>document.getElementById(\'selectgroupsec\').value="'.$selectgroupsec.'";</script>
 				';
 				if(isset($selectgroupsec)){
@@ -181,8 +178,7 @@ function buildMenu($cid){
 				}
 				$outputhtml .= '
 				<input type="hidden" name="orderby" value="'.$orderby.'">
-				
-				
+					
 				
    				<input type="submit" value="'.get_string('printbutton', 'block_signinsheet').'">
 				</span>

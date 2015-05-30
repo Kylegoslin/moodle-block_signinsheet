@@ -97,23 +97,25 @@ function renderGroup($extra){
 	
 	$result = $DB->get_records_sql($query,array($selectedgroupid));
 	$date = date('d-m-y');
+	
+	
 	$courseName = $DB->get_record('course', array('id'=>$cid), 'fullname', $strictness=IGNORE_MISSING); 
 	$courseSName = $DB->get_record('course', array('id'=>$cid), 'shortname', $strictness=IGNORE_MISSING); 
-	$outputhtml = '';
-	
 	$outputhtml .= '<span style="font-size:25px"> <b>'. get_string('signaturesheet', 'block_signinsheet').'</span><br>';
-	
+
 	$outputhtml .= '<span style="font-size:20px"> <b>'. get_string('course', 'block_signinsheet').': </b>' .$courseSName->shortname.' - ' .$courseName->fullname.'</span><br><p></p>';
 	
 	$reportdate = date('l jS \of F Y');
 	$outputhtml .= '<span style="font-size:18px"> <b>'. get_string('date', 'block_signinsheet').':</b> '.$reportdate.'</span><p></p>';
 	
-	
-	$outputhtml .= '<span style="font-size:18px"><br> <b>'. get_string('description', 'block_signinsheet').': __________________________________________________</b> </span><p></p>&nbsp;<p></p>&nbsp;';
-	
-	
+	$outputhtml .= '<span style="font-size:18px"> <b>'. get_string('description', 'block_signinsheet').': __________________________________________________</b> </span><p></p>&nbsp;<p></p>&nbsp;';
+
+	if(isset($groupname)){
+		$outputhtml .= '<span style="font-size:18px">'. $groupname->name . '</span><p></p>';
+	}
+
 	$outputhtml .= '<table style="border-style: solid;" width="600px"  border="1px"><tr>
-					<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="200"><b>Name</b></td>
+					<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="200"><b>'. get_string('personname', 'block_signinsheet').'</b></td>
 				';
 	
 
@@ -139,8 +141,14 @@ if($addidfield){
 
 }	
 
+// Add additional mdl_user field if enabled
+$addUserField = get_config('block_signinsheet', 'includedefaultfield');
+if($addUserField){
+	$mdlUserFieldName = get_config('block_signinsheet', 'defaultfieldselection');
+	$outputhtml.='<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"><b>'. $mdlUserFieldName.' </b></td>';
+}
 	
-	$outputhtml .= '<td style="border-right: thin solid; border-bottom: thin solid" border="1px"><b>Signature</b></td></tr>';
+	$outputhtml .= '<td style="border-right: thin solid; border-bottom: thin solid" border="1px"><b>'. get_string('signature', 'block_signinsheet').'</b></td></tr>';
 	
 	$colCounter = 0;
 	$totalrows = 0;
@@ -148,6 +156,7 @@ if($addidfield){
 	foreach($result as $face){
 		$outputhtml .=  printSingleFace($face->userid, $cid);
 	}
+	
 	
 	//do we need to print additional lines
 	for ($x = 1; $x <= $extra; $x++) {
@@ -171,6 +180,7 @@ if($addidfield){
 function renderAll($extra){
 	
 	global $DB, $cid, $OUTPUT, $CFG;
+	
 	
 	$appendorder = '';
 	$orderby = '';
@@ -204,23 +214,22 @@ function renderAll($extra){
 	$result = $DB->get_records_sql($query, array($cid));
 
 	$date = date('d-m-y');
+	
 	$courseName = $DB->get_record('course', array('id'=>$cid), 'fullname', $strictness=IGNORE_MISSING); 
 	$courseSName = $DB->get_record('course', array('id'=>$cid), 'shortname', $strictness=IGNORE_MISSING); 
 	$outputhtml = '';
-	
 	$outputhtml .= '<span style="font-size:25px"> <b>'. get_string('signaturesheet', 'block_signinsheet').'</span><br>';
-	
+
 	$outputhtml .= '<span style="font-size:20px"> <b>'. get_string('course', 'block_signinsheet').': </b>' .$courseSName->shortname.' - ' .$courseName->fullname.'</span><br><p></p>';
 	
 	$reportdate = date('l jS \of F Y');
 	$outputhtml .= '<span style="font-size:18px"> <b>'. get_string('date', 'block_signinsheet').':</b> '.$reportdate.'</span><p></p>';
 	
-	
-	$outputhtml .= '<span style="font-size:18px"><br> <b>'. get_string('description', 'block_signinsheet').': __________________________________________________</b> </span><p></p>&nbsp;<p></p>&nbsp;';
+	$outputhtml .= '<span style="font-size:18px"> <b>'. get_string('description', 'block_signinsheet').': __________________________________________________</b> </span><p></p>&nbsp;<p></p>&nbsp;';
 	
 	
 	$outputhtml .= '<table style="border-style: solid;" width="600px"  border="1px"><tr>
-					<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="200"><b>Name</b></td>
+					<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="200"><b>'. get_string('personname', 'block_signinsheet').'</b></td>
 				';
 	
 
@@ -249,20 +258,23 @@ if($addidfield){
 
 }	
 
+// Add additional mdl_user field if enabled
+$addUserField = get_config('block_signinsheet', 'includedefaultfield');
+if($addUserField){
+	$mdlFieldName = get_config('block_signinsheet', 'defaultfieldselection');
+	$outputhtml.='<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"><b>'. $mdlFieldName.' </b></td>';
+}
 
 
 
-	$outputhtml .='	<td style="border-right: thin solid; border-bottom: thin solid" border="1px"><b>Signature</b></td>
+	$outputhtml .='	<td style="border-right: thin solid; border-bottom: thin solid" border="1px"><b>'.get_string('signature', 'block_signinsheet').'</b></td>
 	</tr>';
 	
 	$colCounter = 0;
 	$totalrows = 0;
 
 	foreach($result as $face){
-
-
 		$outputhtml .=  printSingleFace($face->userid, $cid);
-
 	}
 	
 	
@@ -270,7 +282,6 @@ if($addidfield){
 	for ($x = 1; $x <= $extra; $x++) {
     	$outputhtml .=  printblank();
 	} 
-	
 	
 	
 	$outputhtml .= '</table>';
@@ -303,10 +314,6 @@ function printSingleFace($uid, $cid){
 	global $PAGE; 
 	
 	
-	
-	
-	
-	
 	$outputhtml =  '
 				
 				
@@ -332,16 +339,20 @@ function printSingleFace($uid, $cid){
 	}
 
 
-	// Id number field enabled
-	$addidfield = get_config('block_signinsheet', 'includeidfield');
-	if($addidfield){
-			
+// Id number field enabled
+$addidfield = get_config('block_signinsheet', 'includeidfield');
+if($addidfield){
 			$outputhtml .=	'<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"> '.$singlerec->idnumber.' </td>';
-
-	}	
-
+}	
 
 
+$addUserField = get_config('block_signinsheet', 'includedefaultfield');
+if($addUserField){
+	
+	$mdlUserFieldName = get_config('block_signinsheet', 'defaultfieldselection');
+	$outputhtml .=	'<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"> '.$singlerec->$mdlUserFieldName.' </td>';
+
+}
 
 
 	$outputhtml .='	<td style=" border-bottom: thin solid"> </td>
@@ -352,10 +363,6 @@ function printSingleFace($uid, $cid){
 return $outputhtml;
 
 }
-
-
-
-
 
 
 function printblank(){
@@ -381,6 +388,12 @@ function printblank(){
 	if($addidfield){
 			$outputhtml .=	'<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"> &nbsp; </td>';
 	}	
+	$addUserField = get_config('block_signinsheet', 'includedefaultfield');
+	if($addUserField){
+	
+	$outputhtml .=	'<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"> &nbsp; </td>';
+
+	}
 
 
 	$outputhtml .='	<td style=" border-bottom: thin solid"> </td>

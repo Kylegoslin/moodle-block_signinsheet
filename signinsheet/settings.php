@@ -71,13 +71,55 @@ $uploaderlink = new moodle_url('/blocks/signinsheet/index.php');
                        get_string('selectcustomfield', 'block_signinsheet'), null, $options));
 
   }
-
+// Include a custom text field column
  $settings->add(new admin_setting_configcheckbox('block_signinsheet/includecustomtextfield',
      new lang_string('includecustomtextfield', 'block_signinsheet'),
         new lang_string('includecustomtextfielddesc', 'block_signinsheet') , null,
          PARAM_INT));
 
    $settings->add(new admin_setting_configtext('block_signinsheet/customtext', get_string('customtext', 'block_signinsheet'), get_string('customtextdesc', 'block_signinsheet'), null, PARAM_TEXT));
+
+// Include a default user field
+ $settings->add(new admin_setting_configcheckbox('block_signinsheet/includedefaultfield',
+     new lang_string('includedefaultfield', 'block_signinsheet'),
+        new lang_string('includedefaultfield', 'block_signinsheet') , null,
+         PARAM_INT));
+
+// Get list of user fields
+$options = array(
+
+'username'=>'username',
+'idnumber'=>'idnumber',
+'firstname'=>'firstname',
+'lastname'=>'lastname',
+'email'=>'email',
+'icq'=>'icq',
+'skype'=>'skype',
+'yahoo'=>'yahoo',
+'aim'=>'aim',
+'msn'=>'msn',
+'phone1'=>'phone1',
+'phone2'=>'phone2',
+'institution'=>'institution',
+'department'=>'department',
+'address'=>'address',
+'city'=>'city',
+'country'=>'country',
+'lang'=>'lang',
+'calendartype'=>'calendartype',
+'lastnamephonetic'=>'lastnamephonetic',
+'firstnamephonetic'=>'firstnamephonetic',
+'middlename'=>'middlename',
+'alternatename'=>'alternatename'
+
+    );
+
+$settings->add(new admin_setting_configselect('block_signinsheet/defaultfieldselection', 
+               get_string('selectedfield', 'block_signinsheet'),
+               get_string('selectdefaultfield', 'block_signinsheet'), 'all', $options));
+
+
+
 
  $settings->add(new admin_setting_configcheckbox('block_signinsheet/includeidfield',
      new lang_string('idfield', 'block_signinsheet'),

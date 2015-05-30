@@ -38,7 +38,6 @@ if($logoEnabled){
 	printHeaderLogo();
 }
 
-
 //extra lines to print?
 $extra = optional_param('extra', '', PARAM_TEXT);;
 
@@ -58,9 +57,8 @@ if(isset($rendertype)){
 	
 } else {
 
-	renderGroup($extra);
+	renderGroup();
 }
-
 
 
 ?>

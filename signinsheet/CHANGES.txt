@@ -5,21 +5,31 @@ SIGN IN SHEET
 
 by Kyle Goslin & Daniel McSweeney
 
-Copyright 2013-2015 - Institute of Technology Blanchardstown.
+Copyright 2013-2014 - Institute of Technology Blanchardstown.
 
 ----------------------------------------------------------------------
-Version 1.5
+
+Version 1.6
 Date: 30th May 2015
-- Added blank fields option for printing
-- tested with 2.8 and 2.9
-- Limited to use on course pages (site would not make sense)
-- Limited to one instance per course
+- Added add blank spaces feature
+
+
+Version 1.5
+Date: 14th May 2014
+- Spanish translation added (With thanks to German Valero).
+- Name and signature fields not hard coded.
+- Option to include one of the default fields from the mdl_user record as a column.
+
 
 
 Version 1.4
 Date: 1st April 2014
-- New screenshots updated on Moodle.org
-- Updated descriptions
-- Tested with Moodle 2.6
+- New screenshots updated on Moodle.org.
+- Updated descriptions.
+- Tested with Moodle 2.6.
 - Remember choice of first name and last name updated.
 - Remember choice of filter applied updated.
+
+
+
+

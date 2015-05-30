@@ -33,17 +33,16 @@ $string['signinsheet:myaddinstance'] = 'Sign in Sheet';
 $string['showall'] = 'Show All';
 $string['showbygroup'] = 'Show Faces By Group';
 $string['update'] = 'Update';
-$string['blankfields'] = 'Blank Fields';
-
 
 $string['date'] = 'Date';
 $string['course'] = 'Course';
 $string['printbutton'] = 'Print Sign in Sheet';
-
+$string['blankfields'] = 'Blank Fields';
 
 $string['firstname'] = 'First Name';
 $string['lastname'] = 'Last Name';
-
+$string['personname'] = 'Name';
+$string['signature'] = 'Signature';
 
 $string['fieldtitledesc'] = 'Title of the field to be displayed at top of column e.g. Student Number';
 $string['genlist'] = 'Generate sign in sheet';
@@ -81,3 +80,8 @@ $string['signinsheet:viewblock'] = 'View Sign in sheet block';
 $string['idfield'] = 'Include ID Number';
 $string['idfielddesc'] = 'Include Moodle Student ID field';
 $string['idnumber'] = 'ID Number';
+
+
+$string['includedefaultfield'] = 'Include A Default Field From The Moodle User Record';
+$string['selectdefaultfield'] = 'Select Default Field To Use';
+$string['selectedfield'] = 'Selected Field';
