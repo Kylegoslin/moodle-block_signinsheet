@@ -18,6 +18,11 @@ Each of the students which are currently added to a course page will have their 
 Additional information about the course name and the current date is added to the top of the sheet, allowing for easy tracking of printed lists.
 
 You can easily order by First name or Last Name and filter by Course Groups that have been defined on your course page. 
+
+
+Install as a block. Ensure all files are in a folder called signinsheet
+Place this folder in the block folder and install via admin account
+
 --------------------------------
 CHANGES
 
