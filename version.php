@@ -24,6 +24,6 @@
 
 $plugin->version = 2015052915;      // The current module version (Date: YYYYMMDDXX).
 $plugin->requires = 2011070110.00;      // Requires this Moodle version.
-
+$plugin->component = 'block_signinsheet';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->release = '1.6';
