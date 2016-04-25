@@ -22,8 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$plugin->version = 2015052915;      // The current module version (Date: YYYYMMDDXX).
+$plugin->version = 2016042516;      // The current module version (Date: YYYYMMDDXX).
 $plugin->requires = 2011070110.00;      // Requires this Moodle version.
-
+$plugin->component = 'block_signinsheet';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.6';
+$plugin->release = '1.7';
