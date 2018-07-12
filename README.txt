@@ -5,9 +5,9 @@ SIGN IN SHEET BLOCK FOR MOODLE
 
 by Kyle Goslin & Daniel McSweeney
 
-Copyright 2013-2014 - Institute of Technology Blanchardstown.
+Copyright 2013-2018 - Institute of Technology Blanchardstown.
 Web: www.itb.ie
-Version 1.4
+Version 2.0
 
 ----------------------------------------------------------------------
 

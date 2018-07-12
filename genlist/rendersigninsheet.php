@@ -18,7 +18,7 @@
 /**
  *
  * @package    block_signinsheet
- * @copyright  2013 Kyle Goslin, Daniel McSweeney
+ * @copyright  2018 Kyle Goslin, Daniel McSweeney
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  *
@@ -84,7 +84,7 @@ function renderGroup($extra){
 	
 
 	
-			// Check if we need to include a custom field
+	// Check if we need to include a custom field in the list created
 	$addfieldenabled = get_config('block_signinsheet', 'includecustomfield');
 	
 	
