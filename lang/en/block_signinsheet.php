@@ -85,3 +85,5 @@ $string['idnumber'] = 'ID Number';
 $string['includedefaultfield'] = 'Include A Default Field From The Moodle User Record';
 $string['selectdefaultfield'] = 'Select Default Field To Use';
 $string['selectedfield'] = 'Selected Field';
+
+$string['privacy:null_reason'] = 'The Sign in sheet block only shows data stored in other locations.';
