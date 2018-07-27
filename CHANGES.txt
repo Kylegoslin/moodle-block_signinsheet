@@ -14,7 +14,7 @@ Date: July 2018
 - Tested on Moodle 3.5
 - JavaScript error on show.php resolved
 - Larger area for adding in signatures relative to the fields added.
-
+- GDPR comp added
 
 Version 1.7
 Date: Monday April 25th 2016
