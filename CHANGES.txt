@@ -9,6 +9,7 @@ Copyright 2013-2018 - Institute of Technology Blanchardstown.
 
 ----------------------------------------------------------------------
 Version 2.0
+
 Date: July 2018
 - Tested on Moodle 3.5
 - JavaScript error on show.php resolved

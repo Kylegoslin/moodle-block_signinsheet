@@ -9,6 +9,9 @@ Copyright 2013-2018 - Institute of Technology Blanchardstown.
 Web: www.itb.ie
 Version 2.0
 
+For Moodle 3.5
+
+
 ----------------------------------------------------------------------
 
 Sign In Sheet block allows you to generate attendance lists for your students.
@@ -19,9 +22,10 @@ Additional information about the course name and the current date is added to th
 
 You can easily order by First name or Last Name and filter by Course Groups that have been defined on your course page. 
 
+This block uses the existing core Moodle user and course enrolment information.
 
-Install as a block. Ensure all files are in a folder called signinsheet
-Place this folder in the block folder and install via admin account
+Install as a block. Ensure all plugin files are in a folder called signinsheet
+Place this folder in the blocks folder and install via admin account
 
 --------------------------------
 CHANGES
