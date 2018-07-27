@@ -18,12 +18,12 @@
 /**
  *
  * @package    block_signinsheet
- * @copyright  2015 Kyle Goslin, Daniel McSweeney
+ * @copyright  2018 Kyle Goslin, Daniel McSweeney
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$plugin->version = 2016042516;      // The current module version (Date: YYYYMMDDXX).
-$plugin->requires = 2011070110.00;      // Requires this Moodle version.
+$plugin->version = 2018071220;      // The current module version (Date: YYYYMMDDXX).
+$plugin->requires = 2018051700.00;      // Requires this Moodle version.
 $plugin->component = 'block_signinsheet';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.7';
+$plugin->release = '2.0';

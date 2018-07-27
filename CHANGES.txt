@@ -5,9 +5,16 @@ SIGN IN SHEET
 
 by Kyle Goslin & Daniel McSweeney
 
-Copyright 2013-2016 - Institute of Technology Blanchardstown.
+Copyright 2013-2018 - Institute of Technology Blanchardstown.
 
 ----------------------------------------------------------------------
+Version 2.0
+Date: July 2018
+- Tested on Moodle 3.5
+- JavaScript error on show.php resolved
+- Larger area for adding in signatures relative to the fields added.
+
+
 Version 1.7
 Date: Monday April 25th 2016
 - Tested on Moodle 3.0

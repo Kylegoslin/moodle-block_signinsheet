@@ -18,7 +18,7 @@
 /**
  *
  * @package    block_signinsheet
- * @copyright  2013 Kyle Goslin, Daniel McSweeney
+ * @copyright  2018 Kyle Goslin, Daniel McSweeney
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  *
@@ -84,7 +84,7 @@ function renderGroup($extra){
 	
 
 	
-			// Check if we need to include a custom field
+	// Check if we need to include a custom field in the list created
 	$addfieldenabled = get_config('block_signinsheet', 'includecustomfield');
 	
 	
@@ -174,7 +174,7 @@ if($addUserField){
 
 /*
  * 
- * Render the entire class 
+ * Render the entire class list.
  * 
  * */
 function renderAll($extra){
@@ -207,7 +207,7 @@ function renderAll($extra){
 	
 	$query = "select userid from ".$CFG->prefix."user_enrolments en where en.enrolid IN (select e.id from ".$CFG->prefix."enrol e where courseid= ?)" . $appendorder;
 	
-		// Check if we need to include a custom field
+    // Check if we need to include a custom field
 	$addfieldenabled = get_config('block_signinsheet', 'includecustomfield');
 	
 	// Get the list of users for this particular course
@@ -228,45 +228,45 @@ function renderAll($extra){
 	$outputhtml .= '<span style="font-size:18px"> <b>'. get_string('description', 'block_signinsheet').': __________________________________________________</b> </span><p></p>&nbsp;<p></p>&nbsp;';
 	
 	
-	$outputhtml .= '<table style="border-style: solid;" width="600px"  border="1px"><tr>
-					<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="200"><b>'. get_string('personname', 'block_signinsheet').'</b></td>
+	$outputhtml .= '<table style="border-style: solid;" width="100%"  border="1px"><tr>
+					<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="25%"><b>'. get_string('personname', 'block_signinsheet').'</b></td>
 				';
 	
 
 	if($addfieldenabled){
 		$fieldid = get_config('block_signinsheet', 'customfieldselect');
 		$fieldname = $DB->get_field('user_info_field', 'name', array('id'=>$fieldid), $strictness=IGNORE_MISSING);
-		$outputhtml.='<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"><b>'.$fieldname.'</b></td>';
+		$outputhtml.='<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="20%"><b>'.$fieldname.'</b></td>';
 	} else {
 		//$outputhtml .= '<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"></td>';
 		}
-	
-//Add custom field text if enabled
-$addtextfield = get_config('block_signinsheet', 'includecustomtextfield');
-if($addtextfield){
-		$fielddata = get_config('block_signinsheet', 'customtext');
-		$outputhtml.='<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"><b>'.$fielddata.'</b></td>';
+        
+    //Add custom field text if enabled
+    $addtextfield = get_config('block_signinsheet', 'includecustomtextfield');
+    if($addtextfield){
+            $fielddata = get_config('block_signinsheet', 'customtext');
+            $outputhtml.='<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="20%"><b>'.$fielddata.'</b></td>';
 
-}	
-
-
-// Id number field enabled
-$addidfield = get_config('block_signinsheet', 'includeidfield');
-if($addidfield){
-		
-		$outputhtml.='<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"><b>'. get_string('idnumber', 'block_signinsheet').' </b></td>';
-
-}	
-
-// Add additional mdl_user field if enabled
-$addUserField = get_config('block_signinsheet', 'includedefaultfield');
-if($addUserField){
-	$mdlFieldName = get_config('block_signinsheet', 'defaultfieldselection');
-	$outputhtml.='<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="150"><b>'. $mdlFieldName.' </b></td>';
-}
+    }	
 
 
+    // Id number field enabled
+    $addidfield = get_config('block_signinsheet', 'includeidfield');
+    if($addidfield){
+            
+            $outputhtml.='<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="20%"><b>'. get_string('idnumber', 'block_signinsheet').' </b></td>';
 
+    }	
+
+    // Add additional mdl_user field if enabled
+    $addUserField = get_config('block_signinsheet', 'includedefaultfield');
+    if($addUserField){
+        $mdlFieldName = get_config('block_signinsheet', 'defaultfieldselection');
+        $outputhtml.='<td style="border-right: thin solid; border-bottom: thin solid" border="1px" width="20%"><b>'. $mdlFieldName.' </b></td>';
+    }
+
+
+    // Signature block space
 	$outputhtml .='	<td style="border-right: thin solid; border-bottom: thin solid" border="1px"><b>'.get_string('signature', 'block_signinsheet').'</b></td>
 	</tr>';
 	

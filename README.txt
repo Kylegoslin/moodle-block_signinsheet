@@ -5,9 +5,9 @@ SIGN IN SHEET BLOCK FOR MOODLE
 
 by Kyle Goslin & Daniel McSweeney
 
-Copyright 2013-2014 - Institute of Technology Blanchardstown.
+Copyright 2013-2018 - Institute of Technology Blanchardstown.
 Web: www.itb.ie
-Version 1.4
+Version 2.0
 
 ----------------------------------------------------------------------
 
@@ -30,7 +30,7 @@ For information about the changes to this plugin, see the CHANGES.txt file.
 
 -------------------------------
 
-BLOCK SETTINGS
+CONFIGURE BLOCK SETTINGS
 
 To access the SETTINGS for this block, Navigate to the root of your Moodle
 installation and then under the Administration block navigate to:

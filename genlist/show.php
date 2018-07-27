@@ -18,7 +18,7 @@
 /**
  *
  * @package    block_signinsheet
- * @copyright  2013 Kyle Goslin, Daniel McSweeney
+ * @copyright  2018 Kyle Goslin, Daniel McSweeney
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -225,7 +225,7 @@ echo $OUTPUT->footer();
 	if(isset($selectgroupsec)){
  		$selecteditem = $selectgroupsec;
 		echo '<script>
-				document.getElementById("selectgroupsec").value = '.$selecteditem.'
+				document.getElementById("selectgroupsec").value = "'.$selecteditem.'"
 			  </script>';
 	 }
 
