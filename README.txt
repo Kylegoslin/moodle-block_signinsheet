@@ -9,6 +9,8 @@ Copyright 2013-2018 - Institute of Technology Blanchardstown.
 Web: www.itb.ie
 Version 2.0
 
+For Moodle 3.5
+
 ----------------------------------------------------------------------
 
 Sign In Sheet block allows you to generate attendance lists for your students.
