@@ -82,6 +82,14 @@ $string['idfielddesc'] = 'Include Moodle Student ID field';
 $string['idnumber'] = 'ID Number';
 
 
+$string['includeinactive'] = 'Include inactive participants';
+$string['includeinactive_desc'] = 'When not set, only active participants are included';
+
+
+$string['includestudents'] = 'Include all participants';
+$string['includestudents_desc'] = 'When not set, only students are included';
+
+
 $string['includedefaultfield'] = 'Include A Default Field From The Moodle User Record';
 $string['selectdefaultfield'] = 'Select Default Field To Use';
 $string['selectedfield'] = 'Selected Field';
