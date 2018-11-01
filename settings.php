@@ -126,13 +126,9 @@ $settings->add(new admin_setting_configselect('block_signinsheet/defaultfieldsel
         new lang_string('idfielddesc', 'block_signinsheet') , null,
          PARAM_INT));
 
-$settings->add(new admin_setting_configcheckbox('block_signinsheet/includeinactive',
-             new lang_string('includeinactive', 'block_signinsheet'),
-             new lang_string('includeinactive_desc', 'block_signinsheet') , null, PARAM_INT));
-
-$settings->add(new admin_setting_configcheckbox('block_signinsheet/includestudents',
-             new lang_string('includestudents', 'block_signinsheet'),
-             new lang_string('includestudents_desc', 'block_signinsheet') , null, PARAM_INT));
+$settings->add(new admin_setting_configcheckbox('block_signinsheet/excludeinactive',
+             new lang_string('excludeinactive', 'block_signinsheet'),
+             new lang_string('excludeinactive_desc', 'block_signinsheet'), 0));
 
 
   

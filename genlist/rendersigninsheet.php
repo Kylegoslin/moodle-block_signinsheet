@@ -205,15 +205,15 @@ function renderAll($extra){
 	
 		}
 	
-    // Check if we need to include inactive students
-    $inactiveclause = ' INNER JOIN ' . $CFG->prefix . 'enrol e ON (e.id = en.enrolid AND e.status = 0)';
-    $includeinactiveflag = get_config('block_signinsheet', 'includeinactive');
-    if (!$includeinactiveflag) {
-        $inactiveclause = '';
+    // Check if we need to include inactive participants
+    $excludeinactiveclause = '';
+    $excludeinactiveenabled = get_config('block_signinsheet', 'excludeinactive');
+    if ($excludeinactiveenabled) {
+        $excludeinactiveclause = ' INNER JOIN ' . $CFG->prefix . 'enrol e ON (e.id = en.enrolid AND e.status = 0)';
     }
-        $inactiveclause = '';
 
-	$query = "select userid from ".$CFG->prefix."user_enrolments en " . $inactiveclause . 
+
+	$query = "select en.userid from ".$CFG->prefix."user_enrolments en " . $excludeinactiveclause .
             " where en.enrolid IN (select e.id from ". $CFG->prefix . "enrol e where courseid= ?) " . $appendorder;
 	
     // Check if we need to include a custom field
