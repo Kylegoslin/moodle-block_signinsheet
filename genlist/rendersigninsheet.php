@@ -205,11 +205,20 @@ function renderAll($extra){
 	
 		}
 	
-	$query = "select userid from ".$CFG->prefix."user_enrolments en where en.enrolid IN (select e.id from ".$CFG->prefix."enrol e where courseid= ?)" . $appendorder;
+    // Check if we need to include inactive participants
+    $excludeinactiveclause = '';
+    $excludeinactiveenabled = get_config('block_signinsheet', 'excludeinactive');
+    if ($excludeinactiveenabled) {
+        $excludeinactiveclause = ' INNER JOIN ' . $CFG->prefix . 'enrol e ON (e.id = en.enrolid AND e.status = 0)';
+    }
+
+
+	$query = "select en.userid from ".$CFG->prefix."user_enrolments en " . $excludeinactiveclause .
+            " where en.enrolid IN (select e.id from ". $CFG->prefix . "enrol e where courseid= ?) " . $appendorder;
 	
     // Check if we need to include a custom field
 	$addfieldenabled = get_config('block_signinsheet', 'includecustomfield');
-	
+
 	// Get the list of users for this particular course
 	$result = $DB->get_records_sql($query, array($cid));
 
